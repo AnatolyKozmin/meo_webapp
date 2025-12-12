@@ -1,26 +1,32 @@
-/* ===== CSS Variables (легко менять под брендбук) ===== */
+/* ===== 66 ФК'25 Брендбук ===== */
 :root {
-    /* Основные цвета - ЗАМЕНИ НА ЦВЕТА ИЗ БРЕНДБУКА */
-    --color-primary: #6C5CE7;
-    --color-primary-dark: #5B4BC7;
-    --color-primary-light: #A29BFE;
+    /* Основные цвета из брендбука */
+    --color-primary: #B40943;        /* Бордовый - главный акцент */
+    --color-primary-dark: #8a0733;
+    --color-primary-light: #d4335f;
     
-    --color-success: #00B894;
-    --color-error: #E17055;
-    --color-warning: #FDCB6E;
+    --color-secondary: #2E4FAA;      /* Синий */
+    --color-accent-yellow: #EEB72D;  /* Жёлтый/золотой */
+    --color-accent-olive: #898930;   /* Оливковый */
+    --color-accent-purple: #755D8F;  /* Фиолетовый */
+    --color-accent-cyan: #78C6CF;    /* Голубой */
+    
+    --color-success: #898930;        /* Оливковый для успеха */
+    --color-error: #B40943;          /* Бордовый для ошибок */
+    --color-warning: #EEB72D;        /* Жёлтый для предупреждений */
     
     /* Фоны */
-    --bg-primary: var(--tg-theme-bg-color, #1A1A2E);
-    --bg-secondary: var(--tg-theme-secondary-bg-color, #16213E);
-    --bg-card: rgba(255, 255, 255, 0.05);
+    --bg-primary: #EAE0C7;           /* Бежевый фон */
+    --bg-secondary: #E6F2F2;         /* Светло-голубой фон */
+    --bg-card: rgba(255, 255, 255, 0.7);
     
     /* Текст */
-    --text-primary: var(--tg-theme-text-color, #EAEAEA);
-    --text-secondary: var(--tg-theme-hint-color, #A0A0A0);
+    --text-primary: #2E211B;         /* Тёмно-коричневый */
+    --text-secondary: #786359;       /* Коричневый */
     
     /* Кнопки */
-    --btn-color: var(--tg-theme-button-color, var(--color-primary));
-    --btn-text: var(--tg-theme-button-text-color, #FFFFFF);
+    --btn-color: var(--color-primary);
+    --btn-text: #FFFFFF;
     
     /* Размеры */
     --radius-sm: 8px;
@@ -29,9 +35,9 @@
     --radius-full: 50%;
     
     /* Тени */
-    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
-    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.2);
-    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.3);
+    --shadow-sm: 0 2px 8px rgba(46, 33, 27, 0.1);
+    --shadow-md: 0 4px 16px rgba(46, 33, 27, 0.15);
+    --shadow-lg: 0 8px 32px rgba(46, 33, 27, 0.2);
     
     /* Анимации */
     --transition-fast: 0.15s ease;
@@ -51,8 +57,11 @@ html, body {
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Fritz Quadrata', 'Times New Roman', Georgia, serif;
     background: var(--bg-primary);
+    /* Если хочешь добавить текстуру - раскомментируй и укажи путь к SVG */
+    /* background-image: url('texture.svg'); */
+    /* background-size: cover; */
     color: var(--text-primary);
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
@@ -86,19 +95,25 @@ body {
     animation: pulse 2s ease-in-out infinite;
 }
 
+/* Если добавишь SVG логотип */
+.logo-img {
+    width: 80px;
+    height: auto;
+}
+
 @keyframes pulse {
     0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.1); }
+    50% { transform: scale(1.05); }
 }
 
 .title {
-    font-size: 24px;
+    font-family: 'Legend', 'Times New Roman', Georgia, serif;
+    font-size: 26px;
     font-weight: 700;
     margin-bottom: 8px;
-    background: linear-gradient(135deg, var(--color-primary-light), var(--color-primary));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 .subtitle {
@@ -125,6 +140,7 @@ body {
     border-radius: var(--radius-lg);
     overflow: hidden;
     background: var(--bg-secondary);
+    box-shadow: var(--shadow-lg);
 }
 
 #scanner-container.active {
@@ -155,13 +171,13 @@ body {
     height: 200px;
     border: 3px solid var(--color-primary);
     border-radius: var(--radius-md);
-    box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 0 9999px rgba(234, 224, 199, 0.6);
     animation: scan-pulse 1.5s ease-in-out infinite;
 }
 
 @keyframes scan-pulse {
     0%, 100% { border-color: var(--color-primary); }
-    50% { border-color: var(--color-primary-light); }
+    50% { border-color: var(--color-accent-yellow); }
 }
 
 .scanner-placeholder {
@@ -172,6 +188,7 @@ body {
     border: 2px dashed var(--text-secondary);
     width: 100%;
     max-width: 300px;
+    box-shadow: var(--shadow-sm);
 }
 
 .scanner-placeholder.hidden {
@@ -181,7 +198,7 @@ body {
 .placeholder-icon {
     font-size: 64px;
     margin-bottom: 16px;
-    opacity: 0.5;
+    opacity: 0.6;
 }
 
 .scanner-placeholder p {
@@ -207,18 +224,21 @@ body {
 }
 
 .status.success {
-    background: rgba(0, 184, 148, 0.15);
-    border: 1px solid var(--color-success);
+    background: rgba(137, 137, 48, 0.15);
+    border: 2px solid var(--color-success);
+    color: var(--color-success);
 }
 
 .status.error {
-    background: rgba(225, 112, 85, 0.15);
-    border: 1px solid var(--color-error);
+    background: rgba(180, 9, 67, 0.1);
+    border: 2px solid var(--color-error);
+    color: var(--color-error);
 }
 
 .status.loading {
-    background: rgba(108, 92, 231, 0.15);
-    border: 1px solid var(--color-primary);
+    background: rgba(46, 79, 170, 0.1);
+    border: 2px solid var(--color-secondary);
+    color: var(--color-secondary);
 }
 
 .status-icon {
@@ -227,7 +247,7 @@ body {
 
 .status-text {
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 @keyframes slide-up {
@@ -257,11 +277,14 @@ body {
     padding: 16px 24px;
     border: none;
     border-radius: var(--radius-md);
+    font-family: inherit;
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
     transition: all var(--transition-fast);
     -webkit-tap-highlight-color: transparent;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .btn:active {
@@ -280,16 +303,18 @@ body {
 
 .btn-primary:hover {
     background: var(--color-primary-dark);
+    box-shadow: var(--shadow-lg);
 }
 
 .btn-secondary {
     background: var(--bg-card);
     color: var(--text-primary);
-    border: 1px solid var(--text-secondary);
+    border: 2px solid var(--text-secondary);
 }
 
 .btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--bg-secondary);
+    border-color: var(--color-primary);
 }
 
 .btn-icon {
@@ -307,6 +332,23 @@ body {
 
 #reader__status_span {
     display: none !important;
+}
+
+/* ===== Декоративные элементы (греческий орнамент) ===== */
+.header::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        var(--color-primary), 
+        var(--color-accent-yellow), 
+        var(--color-primary), 
+        transparent
+    );
+    margin: 16px auto 0;
+    border-radius: 2px;
 }
 
 /* ===== Адаптивность ===== */
@@ -336,4 +378,3 @@ body {
         height: 160px;
     }
 }
-

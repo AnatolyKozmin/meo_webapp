@@ -47,41 +47,25 @@ async function startScanner() {
             html5QrCode = new Html5Qrcode("reader");
         }
         
-        // Запрашиваем камеру
-        const cameras = await Html5Qrcode.getCameras();
+        // Показываем сканер
+        scannerContainer.classList.add('active');
+        scannerPlaceholder.classList.add('hidden');
+        scanBtn.classList.add('hidden');
+        stopBtn.classList.remove('hidden');
         
-        if (cameras && cameras.length > 0) {
-            // Предпочитаем заднюю камеру
-            const backCamera = cameras.find(c => 
-                c.label.toLowerCase().includes('back') || 
-                c.label.toLowerCase().includes('rear') ||
-                c.label.toLowerCase().includes('environment')
-            );
-            const cameraId = backCamera ? backCamera.id : cameras[0].id;
-            
-            // Показываем сканер
-            scannerContainer.classList.add('active');
-            scannerPlaceholder.classList.add('hidden');
-            scanBtn.classList.add('hidden');
-            stopBtn.classList.remove('hidden');
-            
-            // Запускаем сканирование
-            await html5QrCode.start(
-                cameraId,
-                {
-                    fps: 10,
-                    qrbox: { width: 200, height: 200 },
-                    aspectRatio: 1.0
-                },
-                onScanSuccess,
-                onScanFailure
-            );
-            
-            isScanning = true;
-            
-        } else {
-            showStatus('error', '❌', 'Камера не найдена');
-        }
+        // Запускаем сканирование с ЗАДНЕЙ камерой (facingMode: environment)
+        await html5QrCode.start(
+            { facingMode: "environment" },  // Задняя камера
+            {
+                fps: 10,
+                qrbox: { width: 200, height: 200 },
+                aspectRatio: 1.0
+            },
+            onScanSuccess,
+            onScanFailure
+        );
+        
+        isScanning = true;
         
     } catch (err) {
         console.error('Ошибка запуска сканера:', err);
@@ -91,6 +75,24 @@ async function startScanner() {
             errorMessage = 'Разрешите доступ к камере';
         } else if (err.name === 'NotFoundError') {
             errorMessage = 'Камера не найдена';
+        } else if (err.name === 'OverconstrainedError') {
+            // Если задняя камера недоступна, пробуем любую
+            try {
+                await html5QrCode.start(
+                    { facingMode: "user" },
+                    {
+                        fps: 10,
+                        qrbox: { width: 200, height: 200 },
+                        aspectRatio: 1.0
+                    },
+                    onScanSuccess,
+                    onScanFailure
+                );
+                isScanning = true;
+                return;
+            } catch (e) {
+                errorMessage = 'Камера недоступна';
+            }
         }
         
         showStatus('error', '❌', errorMessage);
