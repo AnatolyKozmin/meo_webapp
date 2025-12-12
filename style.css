@@ -1,3 +1,12 @@
+/* ===== Подключение шрифта Legend ===== */
+@font-face {
+    font-family: 'Legend';
+    src: url('Legend.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 /* ===== 66 ФК'25 Брендбук ===== */
 :root {
     /* Основные цвета из брендбука */
@@ -89,12 +98,11 @@ body {
 
 .title {
     font-family: 'Legend', 'Times New Roman', Georgia, serif;
-    font-size: 26px;
-    font-weight: 700;
+    font-size: 32px;
+    font-weight: normal;
     margin-bottom: 8px;
     color: var(--color-primary);
-    text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
 }
 
 .subtitle {
