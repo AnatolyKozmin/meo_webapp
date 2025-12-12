@@ -58,10 +58,12 @@ html, body {
 
 body {
     font-family: 'Fritz Quadrata', 'Times New Roman', Georgia, serif;
-    background: var(--bg-primary);
-    /* Если хочешь добавить текстуру - раскомментируй и укажи путь к SVG */
-    /* background-image: url('texture.svg'); */
-    /* background-size: cover; */
+    background-color: var(--bg-primary);
+    background-image: url('bg.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     color: var(--text-primary);
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
@@ -81,29 +83,8 @@ body {
 /* ===== Header ===== */
 .header {
     text-align: center;
-    padding: 20px 0;
+    padding: 24px 0;
     flex-shrink: 0;
-}
-
-.logo {
-    margin-bottom: 16px;
-}
-
-.logo-icon {
-    font-size: 48px;
-    display: block;
-    animation: pulse 2s ease-in-out infinite;
-}
-
-/* Если добавишь SVG логотип */
-.logo-img {
-    width: 80px;
-    height: auto;
-}
-
-@keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
 }
 
 .title {
@@ -355,10 +336,6 @@ body {
 @media (max-height: 600px) {
     .header {
         padding: 10px 0;
-    }
-    
-    .logo-icon {
-        font-size: 32px;
     }
     
     .title {
