@@ -102,17 +102,17 @@ body {
 
 .title {
     font-family: 'Legend', 'Times New Roman', Georgia, serif;
-    font-size: 32px;
+    font-size: 42px;
     font-weight: normal;
-    margin-bottom: 8px;
-    color: var(--color-primary);
-    letter-spacing: 1px;
+    margin-bottom: 10px;
+    color: #2E211B;
+    letter-spacing: 2px;
 }
 
 .subtitle {
     font-family: 'FritzQuadrata', 'Times New Roman', Georgia, serif;
     font-size: 15px;
-    color: var(--text-secondary);
+    color: #2E211B;
 }
 
 /* ===== Scanner Section ===== */
